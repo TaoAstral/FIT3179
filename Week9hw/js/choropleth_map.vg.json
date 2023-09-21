@@ -34,7 +34,7 @@
         },
         {
             "data": {
-              "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/7_others/oceans.topojson",
+              "url": "https://raw.githubusercontent.com/TaoAstral/FIT3179/main/Week9hw/js/7_others_oceans.topojson",
               "format": {"type": "topojson", "feature": "oceans"}
             },
             "mark": {"type": "geoshape", "fill": "skyblue"}
