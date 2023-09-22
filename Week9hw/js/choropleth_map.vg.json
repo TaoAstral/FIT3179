@@ -68,9 +68,7 @@
                     }
                 }
             ],
-            "mark": {
-                "type": "geoshape"
-            },
+            "mark": {"type": "geoshape", "stroke": "white"},
             "encoding": {
                 "color": {
                     "field": "happiness_score",
@@ -78,9 +76,9 @@
                     "scale": {
                         "type": "linear",
                         "domain": [
-                            0,
-                            8
-                        ]
+                            0,2,4,6,8
+                        ],
+                    "range": ["#FFD700", "#FFA500", "#FF8000", "#FF4500"]
                     },
                     "title": "Happiness Score"
                 },
@@ -98,6 +96,5 @@
                 ]
             }
         }
-    ],
-    "config": {}
+    ]
 }
