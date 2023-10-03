@@ -17,6 +17,39 @@
                 "step": 0.1,
                 "name": "Happiness Score: "
             }
+        },
+        {
+            "name": "Region_selection",
+            "bind": {
+                "input": "select",
+                "options": [
+                    null,
+                    "Western Europe",
+                    "Sub-Saharan Africa",
+                    "Southeast Asia",
+                    "South Asia",
+                    "North America and ANZ",
+                    "Middle East and North Africa",
+                    "Latin America and Caribbean",
+                    "East Asia",
+                    "Commonwealth of Independent States",
+                    "Central and Eastern Europe"
+                ],
+                "labels": [
+                    "All",
+                    "Western Europe",
+                    "Sub-Saharan Africa",
+                    "Southeast Asia",
+                    "South Asia",
+                    "North America and ANZ",
+                    "Middle East and North Africa",
+                    "Latin America and Caribbean",
+                    "East Asia",
+                    "Commonwealth of Independent States",
+                    "Central and Eastern Europe"
+                ],
+                "name": "Region Selection: "
+            }
         }
     ],
     "transform": [
@@ -25,6 +58,9 @@
         {"filter": "datum.social_support > 0"},
         {
             "filter": "datum.happiness_score > Happiness_score"
+        },
+        {
+            "filter": "Region_selection == null || datum.region == Region_selection"
         }
     ],
     "encoding": {
@@ -36,7 +72,6 @@
                 "tickCount": 9
             },
             "scale": {
-                
                 "domain": [
                     0.1,
                     2.4
@@ -51,7 +86,6 @@
                 "tickCount": 9
             },
             "scale": {
-                "type": "log",
                 "domain": [
                     0.1,
                     2
@@ -61,7 +95,7 @@
     },
     "layer": [
         {
-            "mark": "point",
+            "mark": "circle",
             "encoding": {
                 "size": {
                     "field": "happiness_score",
@@ -94,7 +128,6 @@
                     "field": "region",
                     "type": "nominal"
                 },
-                "shape": {"field": "region", "type": "nominal"},
                 "opacity": {
                     "value": 0.6
                 },
