@@ -126,7 +126,8 @@
                 },
                 "color": {
                     "field": "region",
-                    "type": "nominal"
+                    "type": "nominal",
+                    "title": "Region"
                 },
                 "opacity": {
                     "value": 0.6

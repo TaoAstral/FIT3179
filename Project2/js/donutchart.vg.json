@@ -1,0 +1,93 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 400,
+    "height": 500,
+    "data": {
+      "values": [
+        {"Region": "Western Europe", "value": 13},
+        {"Region": "Middle East and North Africa", "value": 1},
+        {"Region": "North America and ANZ", "value": 4},
+        {"Region": "Central and Eastern Europe", "value": 2}
+      ]
+    },
+    "layer": [
+      {
+        "params": [
+          {"name": "hover", "select": {"type": "point", "on": "mouseover"}}
+        ],
+        "mark": {"type": "arc", "innerRadius": 100, "stroke": "white"},
+        "encoding": {
+          "theta": {"field": "value", "type": "quantitative"},
+          "color": {"field": "Region", "type": "nominal", "legend": null},
+          "tooltip": [
+            {"field": "Region", "type": "nominal", "title": "Region"},
+            {"field": "value", "type": "quantitative", "title": "Total Country"}
+          ],
+          "strokeWidth": {
+            "condition": [{"param": "hover", "empty": false, "value": 3}],
+            "value": 0
+          },
+          "order": {
+            "field": "value",
+            "type": "quantitative",
+            "sort": "descending"
+          }
+        }
+      },
+      {
+        "transform": [
+          {"calculate": "'Western Europe'", "as": "text_annotation_raw"},
+          {
+            "calculate": "split(datum.text_annotation_raw,';')",
+            "as": "text_annotation"
+          }
+        ],
+        "mark": {"type": "text", "dx": 125, "dy": 80},
+        "encoding": {"text": {"field": "text_annotation"}, "size": {"value": 13}}
+      },
+          {
+        "transform": [
+          {"calculate": "'Middle East and; North Africa'", "as": "text_annotation_raw"},
+          {
+            "calculate": "split(datum.text_annotation_raw,';')",
+            "as": "text_annotation"
+          }
+        ],
+        "mark": {"type": "text", "dx":-20, "dy": -170},
+        "encoding": {"text": {"field": "text_annotation"}, "size": {"value": 13}}
+      },
+          {
+        "transform": [
+          {"calculate": "'North America; and ANZ'", "as": "text_annotation_raw"},
+          {
+            "calculate": "split(datum.text_annotation_raw,';')",
+            "as": "text_annotation"
+          }
+        ],
+        "mark": {"type": "text", "dx":-95, "dy": -125},
+        "encoding": {"text": {"field": "text_annotation"}, "size": {"value": 13}}
+      },
+              {
+        "transform": [
+          {"calculate": "'Central and; Eastern Europe'", "as": "text_annotation_raw"},
+          {
+            "calculate": "split(datum.text_annotation_raw,';')",
+            "as": "text_annotation"
+          }
+        ],
+        "mark": {"type": "text", "dx":-150, "dy": -15},
+        "encoding": {"text": {"field": "text_annotation"}, "size": {"value": 13}}
+      },
+                  {
+        "transform": [
+          {"calculate": "'Top 20 happiness; score countries; distribution;'", "as": "text_annotation_raw"},
+          {
+            "calculate": "split(datum.text_annotation_raw,';')",
+            "as": "text_annotation"
+          }
+        ],
+        "mark": {"type": "text", "dx":0, "dy": -20},
+        "encoding": {"text": {"field": "text_annotation"}, "size": {"value": 20}}
+      }
+    ]
+  }

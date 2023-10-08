@@ -4,10 +4,19 @@
   "height": 400,
   "padding": 40,
   "autosize": {"type": "none", "contains": "padding"},
-  "signals": [
-    {"name": "radius", "update": "width / 2"}
-  ],
+  "signals": [{"name": "radius", "update": "width / 2"}],
   "data": [
+    {
+      "name": "attr",
+      "values": [
+        {"key": "max_happiness_country.gdp_per_capita","text":"A"},
+        {"key": "max_happiness_country.social_support","text":"B"},
+        {"key": "max_happiness_country.healthy_life_expectancy","text":"C"},
+        {"key": "max_happiness_country.freedom_to_make_life_choices","text":"D"},
+        {"key": "max_happiness_country.generosity","text":"E"},
+        {"key": "max_happiness_country.perceptions_of_corruption","text":"F"}
+      ]
+    },
     {
       "name": "table",
       "url": "https://raw.githubusercontent.com/TaoAstral/FIT3179/main/Week10hw/data/WHR_2023.csv",
@@ -17,10 +26,30 @@
       "name": "maxHappinessByRegion",
       "source": "table",
       "transform": [
-        {"type": "aggregate", "groupby": ["region"], "fields": ["happiness_score"], "ops": ["max"], "as": ["max_happiness_score"]},
-        {"type": "lookup", "from": "table", "key": "happiness_score", "fields": ["max_happiness_score"], "as": ["max_happiness_country"]},
-        {"type": "fold",
-          "fields": [  "max_happiness_country.gdp_per_capita", "max_happiness_country.social_support", "max_happiness_country.healthy_life_expectancy", "max_happiness_country.freedom_to_make_life_choices", "max_happiness_country.generosity", "max_happiness_country.perceptions_of_corruption"],
+        {
+          "type": "aggregate",
+          "groupby": ["region"],
+          "fields": ["happiness_score"],
+          "ops": ["max"],
+          "as": ["max_happiness_score"]
+        },
+        {
+          "type": "lookup",
+          "from": "table",
+          "key": "happiness_score",
+          "fields": ["max_happiness_score"],
+          "as": ["max_happiness_country"]
+        },
+        {
+          "type": "fold",
+          "fields": [
+            "max_happiness_country.gdp_per_capita",
+            "max_happiness_country.social_support",
+            "max_happiness_country.healthy_life_expectancy",
+            "max_happiness_country.freedom_to_make_life_choices",
+            "max_happiness_country.generosity",
+            "max_happiness_country.perceptions_of_corruption"
+          ],
           "as": ["key", "value"]
         }
       ]
@@ -46,23 +75,22 @@
     {
       "name": "color",
       "type": "ordinal",
-      "domain": {"data": "maxHappinessByRegion", "field": "region"},
+      "domain": {"data": "table", "field": "region"},
       "range": {"scheme": "category10"}
     }
   ],
-  "encode": {
-    "enter": {
-      "x": {"signal": "radius"},
-      "y": {"signal": "radius"}
-    }
-  },
+  "encode": {"enter": {"x": {"signal": "radius"}, "y": {"signal": "radius"}}},
   "marks": [
     {
       "type": "group",
       "name": "categories",
       "zindex": 1,
       "from": {
-        "facet": {"data": "maxHappinessByRegion", "name": "facet", "groupby": ["max_happiness_country"]}
+        "facet": {
+          "data": "maxHappinessByRegion",
+          "name": "facet",
+          "groupby": ["region"]
+        }
       },
       "marks": [
         {
@@ -72,8 +100,12 @@
           "encode": {
             "enter": {
               "interpolate": {"value": "linear-closed"},
-              "x": {"signal": "scale('radial', datum.value) * cos(scale('angular', datum.key))"},
-              "y": {"signal": "scale('radial', datum.value) * sin(scale('angular', datum.key))"},
+              "x": {
+                "signal": "scale('radial', datum.value) * cos(scale('angular', datum.key))"
+              },
+              "y": {
+                "signal": "scale('radial', datum.value) * sin(scale('angular', datum.key))"
+              },
               "stroke": {"scale": "color", "field": "region"},
               "strokeWidth": {"value": 1},
               "fill": {"scale": "color", "field": "region"},
@@ -89,7 +121,7 @@
             "enter": {
               "x": {"signal": "datum.x"},
               "y": {"signal": "datum.y"},
-              "text": {"field": "value"},
+              "text": {"field": "datum.value"},
               "align": {"value": "center"},
               "baseline": {"value": "middle"},
               "fill": {"value": "black"}
@@ -101,7 +133,7 @@
     {
       "type": "rule",
       "name": "radial-grid",
-      "from": {"data": "maxHappinessByRegion"},
+      "from": {"data": "attr"},
       "zindex": 0,
       "encode": {
         "enter": {
@@ -115,40 +147,42 @@
       }
     },
     {
-      "type": "text",
-      "name": "key-label",
-      "from": {"data": "maxHappinessByRegion"},
-      "zindex": 1,
-      "encode": {
-        "enter": {
-          "x": {"signal": "(radius + 5) * cos(scale('angular', datum.key))"},
-          "y": {"signal": "(radius + 5) * sin(scale('angular', datum.key))"},
-          "text": {"field": "key"},
-          "align": [
-            {
-              "test": "abs(scale('angular', datum.key)) > PI / 2",
-              "value": "right"
-            },
-            {
-              "value": "left"
-            }
-          ],
-          "baseline": [
-            {
-              "test": "scale('angular', datum.key) > 0", "value": "top"
-            },
-            {
-              "test": "scale('angular', datum.key) == 0", "value": "middle"
-            },
-            {
-              "value": "bottom"
-            }
-          ],
-          "fill": {"value": "black"},
-          "fontWeight": {"value": "bold"}
+  "type": "text",
+  "name": "key-label",
+  "from": {"data": "attr"},
+  "zindex": 1,
+  "encode": {
+    "enter": {
+      "x": {"signal": "(radius + 5) * cos(scale('angular', datum.key))"},
+      "y": {"signal": "(radius + 5) * sin(scale('angular', datum.key))"},
+      "text": {
+        "field": "text"
+        },
+      "align": [
+        {
+          "test": "abs(scale('angular', datum.key)) > PI / 2",
+          "value": "right"
+        },
+        {
+          "value": "left"
         }
-      }
-    },
+      ],
+      "baseline": [
+        {
+          "test": "scale('angular', datum.key) > 0", "value": "top"
+        },
+        {
+          "test": "scale('angular', datum.key) == 0", "value": "middle"
+        },
+        {
+          "value": "bottom"
+        }
+      ],
+      "fill": {"value": "black"},
+      "fontWeight": {"value": "bold"}
+    }
+  }
+},
     {
       "type": "line",
       "name": "outer-line",
