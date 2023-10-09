@@ -1,0 +1,100 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "World Happiness distribution (2023)",
+    "width": 800,
+    "height": 400,
+    "data": {
+        "url": "https://raw.githubusercontent.com/TaoAstral/FIT3179/main/Week9hw/js/ne_110m.topojson",
+        "format": {
+            "type": "topojson",
+            "feature": "ne_110m_admin_0_countries"
+        }
+    },
+    "projection": {
+        "type": "equalEarth"
+    },
+    "layer": [
+        {
+            "transform": [
+                {
+                    "calculate": "'Data is not available in ' + datum.properties.NAME",
+                    "as": "note"
+                }
+            ],
+            "mark": {
+                "type": "geoshape",
+                "fill": "lightgray",
+                "stroke": "white"
+            },
+            "encoding": {
+                "tooltip": {
+                    "field": "note"
+                }
+            }
+        },
+        {
+            "data": {
+              "url": "https://raw.githubusercontent.com/TaoAstral/FIT3179/main/Week9hw/js/7_others_oceans.topojson",
+              "format": {"type": "topojson", "feature": "oceans"}
+            },
+            "mark": {"type": "geoshape", "fill": "skyblue"}
+          },
+        {
+            "data": {
+                "url": "https://raw.githubusercontent.com/TaoAstral/FIT3179/main/Week9hw/js/ne_110m.topojson",
+                "format": {
+                    "type": "topojson",
+                    "feature": "ne_110m_graticules_30"
+                }
+            },
+            "mark": {
+                "type": "geoshape",
+                "fill": null,
+                "stroke": "lightgray"
+            }
+        },
+        {
+            "transform": [
+                {
+                    "lookup": "properties.NAME",
+                    "from": {
+                        "data": {
+                            "url": "https://raw.githubusercontent.com/TaoAstral/FIT3179/main/Week9hw/data/WHR_2023.csv"
+                        },
+                        "key": "country",
+                        "fields": [
+                            "happiness_score"
+                        ]
+                    }
+                }
+            ],
+            "mark": {"type": "geoshape", "stroke": "white"},
+            "encoding": {
+                "color": {
+                    "field": "happiness_score",
+                    "type": "quantitative",
+                    "scale": {
+                        "type": "linear",
+                        "domain": [
+                            0,2,4,6,8
+                        ],
+                    "range": ["#FFD700", "#FFA500", "#FF8000", "#FF4500"]
+                    },
+                    "title": "Happiness Score"
+                },
+                "tooltip": [
+                    {
+                        "field": "properties.NAME",
+                        "type": "nominal",
+                        "title": "Country"
+                    },
+                    {
+                        "field": "happiness_score",
+                        "type": "quantitative",
+                        "title": "Happiness score"
+                    }
+                ]
+            }
+        }
+    ]
+}
