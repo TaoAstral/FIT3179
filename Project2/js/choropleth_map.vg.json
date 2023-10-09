@@ -4,7 +4,7 @@
     "width": 800,
     "height": 400,
     "data": {
-        "url": "https://raw.githubusercontent.com/TaoAstral/FIT3179/main/Week9hw/js/ne_110m.topojson",
+        "url": "https://raw.githubusercontent.com/TaoAstral/FIT3179/main/Project2/js/ne_110m.topojson",
         "format": {
             "type": "topojson",
             "feature": "ne_110m_admin_0_countries"
@@ -34,14 +34,14 @@
         },
         {
             "data": {
-              "url": "https://raw.githubusercontent.com/TaoAstral/FIT3179/main/Week9hw/js/7_others_oceans.topojson",
+              "url": "https://raw.githubusercontent.com/TaoAstral/FIT3179/main/Project2/js/7_others_oceans.topojson",
               "format": {"type": "topojson", "feature": "oceans"}
             },
             "mark": {"type": "geoshape", "fill": "skyblue"}
           },
         {
             "data": {
-                "url": "https://raw.githubusercontent.com/TaoAstral/FIT3179/main/Week9hw/js/ne_110m.topojson",
+                "url": "https://raw.githubusercontent.com/TaoAstral/FIT3179/main/Project2/js/ne_110m.topojson",
                 "format": {
                     "type": "topojson",
                     "feature": "ne_110m_graticules_30"
@@ -59,7 +59,7 @@
                     "lookup": "properties.NAME",
                     "from": {
                         "data": {
-                            "url": "https://raw.githubusercontent.com/TaoAstral/FIT3179/main/Week9hw/data/WHR_2023.csv"
+                            "url": "https://raw.githubusercontent.com/TaoAstral/FIT3179/main/Project2/data/WHR_2023_map.csv"
                         },
                         "key": "country",
                         "fields": [
