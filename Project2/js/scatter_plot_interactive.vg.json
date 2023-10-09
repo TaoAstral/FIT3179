@@ -62,7 +62,34 @@
                     "title":"Region",
                     "legend":{
                       "orient": "left"
-                    }
+                    },
+                    "scale":{
+                        "domain":[
+                          "Western Europe",
+                          "Central and Eastern Europe",
+                          "Middle East and North Africa",
+                          "North America and ANZ",
+                          "Commonwealth of Independent States",
+                          "East Asia",
+                          "Latin America and Caribbean",
+                          "South Asia",
+                          "Southeast Asia",
+                          "Sub-Saharan Africa"
+                          
+                        ],
+                        "range":[
+                          "#84B3B4",
+                          "#E28882",
+                          "#E38B3B",
+                          "#5473a2",
+                          "#A9A9A9",
+                          "#A9A9A9",
+                          "#A9A9A9",
+                          "#A9A9A9",
+                          "#A9A9A9",
+                          "#A9A9A9"
+                        ]
+                      }
                     
                 },
           "opacity": {
