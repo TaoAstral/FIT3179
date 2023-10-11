@@ -21,38 +21,99 @@
   <!-- CSS file -->
   <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Roboto:ital,wght@1,300&display=swap"
+    rel="stylesheet">
+
+
 
 </head>
 
 <body>
 
   <div class="page">
-
-    <div>
-      <h1> Multiple Visualisations </h1>
+    <div class="MainHeading">Happiness choice</div>
+    <div class=space></div>
+    <div class="MainParagraph">
+      Which country has the highest happiness index in the world? What are the most significant
+      factors associated with happiness? Is it linked to economic prosperity, safety,
+      or health? This visualization will provide answers to these questions.
+    </div>
+    <div class=spaceBtwGraph></div>
+    <div class="GraphHeading">This is a header</div>
+    <div class = space></div>
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-3">
+        <div class="MainParagraph">
+          <br>
+          <br>
+          <p> There is a paragraph There is a paragraph  There is a paragraph  There is a paragraph  There is a paragraph
+          </p>
+        </div>
+      </div>
+      <div class="pure-u-2-3">
+        <div id="vis1" class="vis-container" style="margin-left: 20px;"></div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+    
+    <div class="GraphHeading">This is a header</div>
+    <div class="space">
     </div>
 
     <!-- pure grid group -->
     <div class="pure-g">
-      <div class="pure-u-1-2">
-        <div id="vis1" class="vis-container"></div>
+      <div class="pure-u-1-3">
+        <div class="MainParagraph">
+          <p>
+            <br>
+            <br>
+            There is a paragraph There is a paragraph  There is a paragraph  There is a paragraph  There is a paragraph
+          </p>
+          <p class="notify">
+            <br>
+            <br>
+            <br>
+            <br>
+          </p>
+        </div>
+      </div>
+      <div class="pure-u-2-3">
+        <div id="vis2" class="vis-container" style="margin-left: 30px;"></div>
       </div>
     </div>
-    <!-- end pure grid group -->
-
-    <div class="space">
-
+    
+    <div class="GraphHeading">This is a header</div>
+    <div class="pure-g">
+      <div class="pure-u-1-3" style="margin-left: 25px;">
+        <div id="vis3" class="vis-container"></div>
+      </div>
+      <div class="pure-u-1-3" style="margin-left: 100px;">
+        <div id="vis4" class="vis-container" ></div>
+      </div>
     </div>
-    <!-- pure grid group -->
-    <div>
-      <div id="vis2" class="vis-container"></div>
+
+    <div class="GraphHeading">This is a header</div>
+    <div class="pure-g">
+      <div class="pure-u-1-3" style="margin-left: 25px;">
+        <div id="vis5" class="vis-container"></div>
+      </div>
     </div>
-    <!-- end pure grid group -->
+
+
+  </div>
+  <!-- end pure grid group -->
 
   </div> <!-- end page -->
 
   <script type="text/javascript">
-    var specVis1 = "js/radar.vg.json";
+    var specVis1 = "js/choropleth_map.vg.json";
+    var specVis2 = "js/lollipop_chart_happiness.vg.json";
+    var specVis3 = "js/donutchart.vg.json";
+    var specVis4 = "js/scatter_plot_interactive.vg.json";
+    var specVis5 = "js/radar.vg.json";
 
     vegaEmbed('#vis1', specVis1, { "actions": false }).then(function (result) {
       // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
@@ -62,6 +123,19 @@
       // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
     }).catch(console.error);
 
+    vegaEmbed('#vis3', specVis3, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis4', specVis4, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis5', specVis5, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
   </script>
 </body>
+
 </html>

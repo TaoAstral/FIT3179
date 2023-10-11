@@ -1,8 +1,10 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": "World Happiness distribution (2023)",
-    "width": 800,
-    "height": 400,
+    "view": {
+        "stroke": "beige"
+    },
+    "width": 700,
+    "height": 450,
     "data": {
         "url": "https://raw.githubusercontent.com/TaoAstral/FIT3179/main/Project2/js/ne_110m.topojson",
         "format": {
@@ -23,7 +25,7 @@
             ],
             "mark": {
                 "type": "geoshape",
-                "fill": "lightgray",
+                "fill": "deepskyblue",
                 "stroke": "white"
             },
             "encoding": {
@@ -34,11 +36,17 @@
         },
         {
             "data": {
-              "url": "https://raw.githubusercontent.com/TaoAstral/FIT3179/main/Project2/js/7_others_oceans.topojson",
-              "format": {"type": "topojson", "feature": "oceans"}
+                "url": "https://raw.githubusercontent.com/TaoAstral/FIT3179/main/Project2/js/7_others_oceans.topojson",
+                "format": {
+                    "type": "topojson",
+                    "feature": "oceans"
+                }
             },
-            "mark": {"type": "geoshape", "fill": "skyblue"}
-          },
+            "mark": {
+                "type": "geoshape",
+                "fill": "skyblue"
+            }
+        },
         {
             "data": {
                 "url": "https://raw.githubusercontent.com/TaoAstral/FIT3179/main/Project2/js/ne_110m.topojson",
@@ -68,7 +76,10 @@
                     }
                 }
             ],
-            "mark": {"type": "geoshape", "stroke": "white"},
+            "mark": {
+                "type": "geoshape",
+                "stroke": "white"
+            },
             "encoding": {
                 "color": {
                     "field": "happiness_score",
@@ -76,11 +87,35 @@
                     "scale": {
                         "type": "linear",
                         "domain": [
-                            0,2,4,6,8
+                            1,
+                            2,
+                            3,
+                            4,
+                            5,
+                            6,
+                            7,
+                            8
                         ],
-                    "range": ["#FFD700", "#FFA500", "#FF8000", "#FF4500"]
+                        "range": [
+                            "#D239DE",
+                            "#D548BE",
+                            "#D64DB6",
+                            "#DC6392",
+                            "#E17874",
+                            "#E8974F",
+                            "#EDA445",
+                            "#F0AE42"
+                        ]
                     },
-                    "title": "Happiness Score"
+                    "legend": {
+                        "title": "Happiness score",
+                        "direction": "horizontal",
+                        "orient": "top-right",
+                        "gradientLength": 300,
+                        "titleFontSize": 15,
+                        "titleColor": "black",
+                        "padding": -20
+                    }
                 },
                 "tooltip": [
                     {
@@ -96,5 +131,6 @@
                 ]
             }
         }
-    ]
+    ],
+    "background": "beige"
 }

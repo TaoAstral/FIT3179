@@ -1,16 +1,20 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-     "width":400,
-    "height":400,  
-    "title": "Quality of Life Indicators",
-
+    "view": {
+        "stroke": "beige"
+    },
+    "width": 400,
+    "height": 400,
     "data": {
         "url": "https://raw.githubusercontent.com/TaoAstral/FIT3179/main/Week10hw/data/WHR_2023.csv"
     },
-   
     "transform": [
-        {"filter": "datum.freedom_to_make_life_choices > 0"},
-        {"filter": "datum.healthy_life_expectancy > 0"}
+        {
+            "filter": "datum.freedom_to_make_life_choices > 0"
+        },
+        {
+            "filter": "datum.healthy_life_expectancy > 0"
+        }
     ],
     "encoding": {
         "x": {
@@ -42,60 +46,63 @@
             }
         }
     },
-    "layer": [     
-        {             
-        "selection": {
-          "state_highlight": {
-          "type": "multi",
-          "fields": ["region"],
-          "bind": "legend"
-          }
-        }, 
+    "layer": [
+        {
+            "selection": {
+                "state_highlight": {
+                    "type": "multi",
+                    "fields": [
+                        "region"
+                    ],
+                    "bind": "legend"
+                }
+            },
             "mark": {
-              "type":"circle",
-              "size":150
-            },       
+                "type": "circle",
+                "size": 150
+            },
             "encoding": {
                 "color": {
                     "field": "region",
                     "type": "nominal",
-                    "title":"Region",
-                    "legend":{
-                      "orient": "left"
+                    "title": "Region",
+                    "legend": {
+                        "orient": "left"
                     },
-                    "scale":{
-                        "domain":[
-                          "Western Europe",
-                          "Central and Eastern Europe",
-                          "Middle East and North Africa",
-                          "North America and ANZ",
-                          "Commonwealth of Independent States",
-                          "East Asia",
-                          "Latin America and Caribbean",
-                          "South Asia",
-                          "Southeast Asia",
-                          "Sub-Saharan Africa"
-                          
+                    "scale": {
+                        "domain": [
+                            "Western Europe",
+                            "Central and Eastern Europe",
+                            "Middle East and North Africa",
+                            "North America and ANZ",
+                            "Commonwealth of Independent States",
+                            "East Asia",
+                            "Latin America and Caribbean",
+                            "South Asia",
+                            "Southeast Asia",
+                            "Sub-Saharan Africa"
                         ],
-                        "range":[
-                          "#84B3B4",
-                          "#E28882",
-                          "#E38B3B",
-                          "#5473a2",
-                          "#A9A9A9",
-                          "#A9A9A9",
-                          "#A9A9A9",
-                          "#A9A9A9",
-                          "#A9A9A9",
-                          "#A9A9A9"
+                        "range": [
+                            "#84B3B4",
+                            "#E28882",
+                            "#E38B3B",
+                            "#5473a2",
+                            "#A9A9A9",
+                            "#A9A9A9",
+                            "#A9A9A9",
+                            "#A9A9A9",
+                            "#A9A9A9",
+                            "#A9A9A9"
                         ]
-                      }
-                    
+                    }
                 },
-          "opacity": {
-            "condition": {"selection": "state_highlight", "value": 0.6},
-            "value": 0.1
-            },
+                "opacity": {
+                    "condition": {
+                        "selection": "state_highlight",
+                        "value": 0.6
+                    },
+                    "value": 0.1
+                },
                 "tooltip": [
                     {
                         "field": "country",
@@ -114,6 +121,7 @@
                     }
                 ]
             }
-        }       
-    ]
+        }
+    ],
+    "background": "beige"
 }

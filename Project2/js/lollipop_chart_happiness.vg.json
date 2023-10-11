@@ -1,0 +1,192 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "view": {
+      "stroke": "beige"
+  },
+    "width":560,
+    "height":300,
+    "data": {
+      "url": "https://raw.githubusercontent.com/TaoAstral/FIT3179/main/Week10hw/data/WHR_2023.csv"
+    },
+    "transform": [
+      {"filter": "datum.happiness_score > 7.1"}
+    ],
+    "layer": [
+      {
+        "params": [
+          {
+            "name": "highlight",
+            "select": {"type": "point","on": "mouseover"}
+          },
+          {
+            "name": "select",
+            "select": "point"
+          }
+        ],
+        "mark": {"type": "bar","size":10, "stroke": "black"},
+        "encoding": {
+          "y": {"field": "country", "type": "ordinal", "title": "Country","sort":"-x",
+        "axis":{
+          "titleColor":"black",
+          "titleFontSize":16,
+          "labelColor":"black",
+          "labelFontSize":14
+        }},
+          "x": {
+            "aggregate": "sum",
+            "field": "happiness_score",
+            "title": "Happiness score",
+            "axis":{
+              "titleColor":"black",
+              "titleFontSize":16,
+              "labelColor":"black",
+              "labelFontSize":14,
+              "grid": false
+            }
+          },
+          "fillOpacity": {
+            "condition": {
+              "param": "select",
+              "value": 1
+            },
+            "value": 0.3
+          },
+          "strokeWidth": {
+            "condition": [
+              {
+                "param": "select",
+                "empty": false,
+                "value": 1
+              },
+              {
+                "param": "highlight",
+                "empty": false,
+                "value": 1
+              }
+            ],
+            "value": 0
+          },
+          "tooltip":[
+            {"field": "country", "type": "nominal", "title": "Coutry"},
+            {"field": "happiness_score", "type": "quantitative", "title": "Happiness score"}
+          ],
+          "color":{
+            "legend":null,
+            "field":"country",
+            "type": "nominal",
+            "scale":{
+              "domain":[
+                  "Finland",
+                  "Denmark",
+                  "Iceland",
+                  "Israel",
+                  "Netherlands",
+                  "Sweden",
+                  "Norway",
+                  "Switzerland",
+                  "Luxembourg",
+                  "New Zealand"
+              ],
+              "range":[
+                "#F0AE42",
+                "#A9A9A9",
+                "#A9A9A9",
+                "#A9A9A9",
+                "#A9A9A9",
+                "#A9A9A9",
+                "#A9A9A9",
+                "#A9A9A9",
+                "#A9A9A9",
+                "#A9A9A9"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "mark": {"type": "point", "size": 300, "filled": true},
+        "encoding": {
+            "y": {"field": "country", "type": "ordinal", "title": "Country", "sort":"-x"},
+            "x": {
+              "aggregate": "sum",
+              "field": "happiness_score",
+              "title": "Happiness score"
+            },
+            "tooltip":[
+              {"field": "country", "type": "nominal", "title": "Country"},
+              {"field": "happiness_score", "type": "quantitative", "title": "Happiness score"}
+            ],
+            "color":{
+              "legend":null,
+              "field":"country",
+              "type": "nominal",
+              "scale":{
+                "domain":[
+                  "Finland",
+                  "Denmark",
+                  "Iceland",
+                  "Israel",
+                  "Netherlands",
+                  "Sweden",
+                  "Norway",
+                  "Switzerland",
+                  "Luxembourg",
+                  "New Zealand"
+              ],
+                "range":[
+                  "#F0AE42",
+                  "#A9A9A9",
+                  "#A9A9A9",
+                  "#A9A9A9",
+                  "#A9A9A9",
+                  "#A9A9A9",
+                  "#A9A9A9",
+                  "#A9A9A9",
+                  "#A9A9A9",
+                  "#A9A9A9"
+                ]
+              }
+            }
+          }
+      },
+      {
+        "transform": [
+          {"filter":"datum.state == 'California'"},
+          {
+            "calculate": "'California has the highest;number of death due to Covid-19'",
+            "as": "text_annotation_raw"
+          },
+          {
+            "calculate": "split(datum.text_annotation_raw,';')",
+            "as": "text_annotation"
+          }
+        ],
+        "mark": {"type": "text", "dx": 150, "dy": -40},
+        "encoding": {
+          "text": {"field": "text_annotation"},
+          "color": {"value": "#FFFFFF"},
+          "size": {"value": 15}
+        }
+      },
+      {
+        "transform": [
+          {"filter":"datum.state == 'California'"},
+          {
+            "calculate": "'Georgia is third least;number of death due to Covid-19'",
+            "as": "text_annotation_raw"
+          },
+          {
+            "calculate": "split(datum.text_annotation_raw,';')",
+            "as": "text_annotation"
+          }
+        ],
+        "mark": {"type": "text", "dx": 80, "dy": 70},
+        "encoding": {
+          "text": {"field": "text_annotation"},
+          "color": {"value": "#FFFFFF"},
+          "size": {"value": 15}
+        }
+      }
+    ],
+    "background": "beige"
+}
