@@ -64,7 +64,7 @@ body *{
   }
 
   .spaceBtwGraph{
-    height: 30px;
+    height: 20px;
 }
 
 .GraphHeading{
@@ -75,4 +75,15 @@ body *{
   color: rgb(0, 0, 0);
   text-align: center;
   word-spacing: 15px;
+}
+
+.GraphParagrapgh{
+  color: black;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 22px;
+  word-spacing: 2px;
+}
+
+.space{
+  height: 15px;
 }

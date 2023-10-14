@@ -151,9 +151,9 @@
       },
       {
         "transform": [
-          {"filter":"datum.state == 'California'"},
+          {"filter":"datum.country == 'Finland'"},
           {
-            "calculate": "'California has the highest;number of death due to Covid-19'",
+            "calculate": "'Finland tops the; happiness index.'",
             "as": "text_annotation_raw"
           },
           {
@@ -161,29 +161,10 @@
             "as": "text_annotation"
           }
         ],
-        "mark": {"type": "text", "dx": 150, "dy": -40},
+        "mark": {"type": "text", "dx": 200, "dy": -165},
         "encoding": {
           "text": {"field": "text_annotation"},
-          "color": {"value": "#FFFFFF"},
-          "size": {"value": 15}
-        }
-      },
-      {
-        "transform": [
-          {"filter":"datum.state == 'California'"},
-          {
-            "calculate": "'Georgia is third least;number of death due to Covid-19'",
-            "as": "text_annotation_raw"
-          },
-          {
-            "calculate": "split(datum.text_annotation_raw,';')",
-            "as": "text_annotation"
-          }
-        ],
-        "mark": {"type": "text", "dx": 80, "dy": 70},
-        "encoding": {
-          "text": {"field": "text_annotation"},
-          "color": {"value": "#FFFFFF"},
+          "color": {"value": "#000000"},
           "size": {"value": 15}
         }
       }

@@ -4,7 +4,7 @@
         "stroke": "beige"
     },
     "width": 700,
-    "height": 450,
+    "height": 430,
     "data": {
         "url": "https://raw.githubusercontent.com/TaoAstral/FIT3179/main/Project2/js/ne_110m.topojson",
         "format": {
@@ -110,7 +110,7 @@
                     "legend": {
                         "title": "Happiness score",
                         "direction": "horizontal",
-                        "orient": "top-right",
+                        "orient": "bottom-left",
                         "gradientLength": 300,
                         "titleFontSize": 15,
                         "titleColor": "black",
@@ -130,7 +130,25 @@
                     }
                 ]
             }
-        }
+        },
+        {
+            "transform": [
+              {
+                "calculate": "'Africa country has low; happiness scores.'",
+                "as": "text_annotation_raw"
+              },
+              {
+                "calculate": "split(datum.text_annotation_raw,';')",
+                "as": "text_annotation"
+              }
+            ],
+            "mark": {"type": "text", "dx": 60, "dy": 100},
+            "encoding": {
+              "text": {"field": "text_annotation"},
+              "color": {"value": "#000000"},
+              "size": {"value": 14}
+            }
+          }
     ],
     "background": "beige"
 }

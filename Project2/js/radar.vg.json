@@ -1,297 +1,145 @@
 {
-  "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "width": 500,
-  "height": 500,
-  "padding": 50,
-  "autosize": {"type": "none", "contains": "padding"},
-  "signals": [{"name": "radius", "update": "width / 2"},
-    {
-      "name": "clear", "value": true,
-      "on": [
-        {
-          "events": "mouseup[!event.item]",
-          "update": "true",
-          "force": true
-        }
-      ]
-    },
-    {
-      "name": "shift", "value": false,
-      "on": [
-        {
-          "events": "@legendSymbol:click, @legendLabel:click",
-          "update": "event.shiftKey",
-          "force":  true
-        }
-      ]
-    },
-    {
-      "name": "clicked", "value": null,
-      "on": [
-        {
-          "events": "@legendSymbol:click, @legendLabel:click",
-          "update": "{value: datum.value}",
-          "force":  true
-        }
-      ]
-    },
-    {
-      "name": "brush", "value": 0,
-      "on": [
-        {
-          "events": {"signal": "clear"},
-          "update": "clear ? [0, 0] : brush"
-        },
-        {
-          "events": "@xaxis:mousedown",
-          "update": "[x(), x()]"
-        },
-        {
-          "events": "[@xaxis:mousedown, window:mouseup] > window:mousemove!",
-          "update": "[brush[0], clamp(x(), 0, width)]"
-        },
-        {
-          "events": {"signal": "delta"},
-          "update": "clampRange([anchor[0] + delta, anchor[1] + delta], 0, width)"
-        }
-      ]
-    },
-    {
-      "name": "anchor", "value": null,
-      "on": [{"events": "@brush:mousedown", "update": "slice(brush)"}]
-    },
-    {
-      "name": "xdown", "value": 0,
-      "on": [{"events": "@brush:mousedown", "update": "x()"}]
-    },
-    {
-      "name": "delta", "value": 0,
-      "on": [
-        {
-          "events": "[@brush:mousedown, window:mouseup] > window:mousemove!",
-          "update": "x() - xdown"
-        }
-      ]
-    },
-    {
-      "name": "domain",
-      "on": [
-        {
-          "events": {"signal": "brush"},
-          "update": "span(brush) ? invert('x', brush) : null"
-        }
-      ]
-    }],
-  
-  "data": [
-    {
-      "name": "attr",
-      "values": [
-        {"key": "max_happiness_country.healthy_life_expectancy", "text": "Healthy life expectancy"},
-        
-        {
-          "key": "max_happiness_country.freedom_to_make_life_choices",
-          "text": "Freedom to make life choice"
-        },
-        {"key": "max_happiness_country.generosity", "text": "Generosity"},
-        {"key": "max_happiness_country.perceptions_of_corruption", "text": "Perceptions of corruption"}
-      ]
-    },
-    {
-      "name": "table",
-      "url": "https://raw.githubusercontent.com/TaoAstral/FIT3179/main/Week10hw/data/WHR_2023.csv",
-      "format": {"type": "csv"}
-    },
-    {
-      "name": "maxHappinessByRegion",
-      "source": "table",
-      "transform": [
-        {
-          "type": "aggregate",
-          "groupby": ["region"],
-          "fields": ["happiness_score"],
-          "ops": ["max"],
-          "as": ["max_happiness_score"]
-        },
-        {
-          "type": "lookup",
-          "from": "table",
-          "key": "happiness_score",
-          "fields": ["max_happiness_score"],
-          "as": ["max_happiness_country"]
-        },
-        {
-          "type": "fold",
-          "fields": [
-            "max_happiness_country.healthy_life_expectancy",
-            "max_happiness_country.freedom_to_make_life_choices",
-            "max_happiness_country.generosity",
-            "max_happiness_country.perceptions_of_corruption"
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width":750,
+  "view": {
+    "stroke": "beige"
+},
+  "height":500,
+  "data": {"url": "https://raw.githubusercontent.com/TaoAstral/FIT3179/main/Week10hw/data/WHR_2023.csv"},
+  "params": [
+      {
+        "name": "Indicator_selection",
+        "bind": {
+          "input": "select",
+          "options": [
+          null,
+          "Choice Freedom",
+          "Corruption Perceptions",
+          "Generosity",
+          "Healthy Life Expectancy"
           ],
-          "as": ["key", "value"]
-        }
-      ]
-    },
-        {
-      "name": "selected",
-      "on": [
-        {"trigger": "clear", "remove": true},
-        {"trigger": "!shift", "remove": true},
-        {"trigger": "!shift && clicked", "insert": "clicked"},
-        {"trigger": "shift && clicked", "toggle": "clicked"}
-      ]
-    }
-  ],
-  "scales": [
-    {
-      "name": "angular",
-      "type": "point",
-      "range": {"signal": "[-PI, PI]"},
-      "padding": 0.5,
-
-      "domain": {"data": "maxHappinessByRegion", "field": "key"}
-    },
-    {
-      "name": "radial",
-      "type": "linear",
-      "range": {"signal": "[0, radius]"},
-      "zero": true,
-      "nice": false,
-      "domain": {"data": "maxHappinessByRegion", "field": "value"},
-      "domainMin": 0
-    },
-    {
-      "name": "color",
-      "type": "ordinal",
-      "domain": {"data": "table", "field": "region"},
-      "range": {"scheme": "category10"}
-    }
-  ],
-   "legends": [
-    {
-      "stroke": "color",
-      "title": "Region",
-      "orient": "top-right",
-      "encode": {
-        "symbols": {
-          "name": "legendSymbol",
-          "interactive": true,
-          "update": {
-            "fill": {"value": "transparent"},
-            "strokeWidth": {"value": 2},
-            "opacity": [
-              {"test": "!length(data('selected')) || indata('selected', 'value', datum.value)", "value": 0.7},
-              {"value": 0.15}
-            ],
-            "size": {"value": 64}
-          }
-        },
-        "labels": {
-          "name": "legendLabel",
-          "interactive": true,
-          "update": {
-            "opacity": [
-              {"test": "!length(data('selected')) || indata('selected', 'value', datum.value)", "value": 1},
-              {"value": 0.25}
-            ]
-          }
+          "labels":[
+          "Show All",
+          "Choice Freedom",
+          "Corruption Perceptions",
+          "Generosity",
+          "Healthy Life Expectancy"],
+          "name": "Quality of Life Indicator: "
         }
       }
-    }
-  ],
-  "encode": {"enter": {"x": {"value": 200}, "y":{"value": 200}}},
-  
-  "marks": [
-    {
-      "type": "group",
-      "name": "categories",
-      "zindex": 1,
-      "from": {
-        "facet": {
-          "data": "maxHappinessByRegion",
-          "name": "facet",
-          "groupby": ["region"]
-        }
-      },
-      "marks": [
+    ],
+  "transform": [
+      {"filter": "datum.happiness_score > 7.1"},
+                {
+    "calculate": "datum.healthy_life_expectancy", "as": "Healthy Life Expectancy"
+  },
         {
-          "type": "line",
-          "name": "category-line",
-          "from": {"data": "facet"},
-          "encode": {
-            "enter": {
-              "interpolate": {"value": "linear-closed"},
-              "x": {
-                "signal": "scale('radial', datum.value) * cos(scale('angular', datum.key))"
-              },
-              "y": {
-                "signal": "scale('radial', datum.value) * sin(scale('angular', datum.key))"
-              },
-              "stroke": {"scale": "color", "field": "region"},
-              "strokeWidth": {"value": 1},
-              "fill": {"scale": "color", "field": "region"},
-              "fillOpacity": {"value": 0.1}
-            }
-          }
-        }
-      ]
-    },
-    {
-      "type": "rule",
-      "name": "radial-grid",
-      "from": {"data": "attr"},
-      "zindex": 0,
-      "encode": {
-        "enter": {
-          "x": {"value": 0},
-          "y": {"value": 0},
-          "x2": {"signal": "radius * cos(scale('angular', datum.key))"},
-          "y2": {"signal": "radius * sin(scale('angular', datum.key))"},
-          "stroke": {"value": "black"},
-          "strokeWidth": {"value": 1}
-        }
-      }
-    },
-    {
-      "type": "text",
-      "name": "key-label",
-      "from": {"data": "attr"},
-      "zindex": 1,
-      "encode": {
-        "enter": {
-          "x": {"signal": "(radius + 5) * cos(scale('angular', datum.key))"},
-          "y": {"signal": "(radius + 5) * sin(scale('angular', datum.key))"},
-          "text": {"field": "text"},
-          "align": [
+    "calculate": "datum.freedom_to_make_life_choices", "as": "Choice Freedom"
+  },
+          {
+    "calculate": "datum.generosity", "as": "Generosity"
+  },
             {
-              "test": "abs(scale('angular', datum.key)) > PI / 2",
-              "value": "center"
-            },
-            {"value": "center"}
+    "calculate": "datum.perceptions_of_corruption", "as": "Corruption Perceptions"
+  },
+      {"fold": ["Healthy Life Expectancy","Choice Freedom","Generosity","Corruption Perceptions"], "as": ["key", "value"]},
+            {"filter": "Indicator_selection == null || datum.key == Indicator_selection"}
+
+  ],
+  "encoding": {
+    "x": {
+      "field": "country",
+      "type": "ordinal",
+      "title": "Country",
+      "sort":"-y",
+      "axis":{
+        "titleColor":"black",
+        "titleFontSize":16,
+        "labelColor":"black",
+        "labelFontSize":11,
+        "labelAngle":-20,
+        "grid": false
+      }
+    },
+    "y": {
+      "field": "value",
+      "aggregate": "sum",
+      "type": "quantitative",
+      "title": "Sum of Score",
+      "axis":{
+        "titleColor":"black",
+        "titleFontSize":16,
+        "labelColor":"black",
+        "labelFontSize":13,
+        "grid": false
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark":{
+      "type": "bar",
+      "width":26
+      },
+      "encoding": {
+          "tooltip":[
+            {"field":"key", "type": "nominal","title":"Quality of Life Indicator:"},
+            {"field":"value", "type": "nominal","title":"Score:", "format":".3f"}
           ],
-          "baseline": [
-            {"test": "scale('angular', datum.key) > 0", "value": "top"},
-            {"test": "scale('angular', datum.key) == 0", "value": "middle"},
-            {"value": "bottom"}
-          ],
-          "fill": {"value": "black"},
-          "fontWeight": {"value": "bold"}
-        }
+          "color": {
+          "field": "key",
+          "type": "nominal",
+          "scale": {
+              "domain": ["Choice Freedom","Corruption Perceptions","Generosity","Healthy Life Expectancy","Corruption Perceptions"],
+              "range": [ "#F08080","#BFA1E2","#FFD700","#87CEFA"]
+          },
+          "title": "Life Indicator",
+          "legend":{
+            "titleColor":"black",
+            "orient": "top",
+            "labelColor":"black",
+            "titleFontSize":16,
+            "labelFontSize":13
+          }
+          }
       }
     },
     {
-      "type": "line",
-      "name": "outer-line",
-      "from": {"data": "radial-grid"},
-      "encode": {
-        "enter": {
-          "interpolate": {"value": "linear-closed"},
-          "x": {"field": "x2"},
-          "y": {"field": "y2"},
-          "stroke": {"value": "black"},
-          "strokeWidth": {"value": 1}
+      "mark":{
+          "type": "text",
+          "align":"center",
+          "baseline":"middle",
+          "color":"black",
+          "dy":-10,
+          "size":13
+      },
+      "encoding": {
+          "text":{
+              "field":"value","aggregate": "sum","type": "quantitative","format":".3f"
+          }
+      }
+    },
+    {
+      "transform": [
+        {"filter":"datum.country == 'Israel'"},
+        {"filter": "Indicator_selection == null"},
+        {
+          "calculate": "'Israel is the only Asian; country in the top ten.'",
+          "as": "text_annotation_raw"
+        },
+        {
+          "calculate": "split(datum.text_annotation_raw,';')",
+          "as": "text_annotation"
         }
+      ],
+      "mark": {"type": "text", "dx": 0, "dy": -150},
+      "encoding": {
+        "text": {"field": "text_annotation"},
+        "color": {"value": "#000000"},
+        "size": {"value": 15}
       }
     }
-  ]
+  ],
+    "background": "beige"
 }
+  
