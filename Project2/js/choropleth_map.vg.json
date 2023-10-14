@@ -25,7 +25,7 @@
             ],
             "mark": {
                 "type": "geoshape",
-                "fill": "deepskyblue",
+                "fill": "lightgray",
                 "stroke": "white"
             },
             "encoding": {
@@ -97,14 +97,14 @@
                             8
                         ],
                         "range": [
-                            "#D239DE",
-                            "#D548BE",
-                            "#D64DB6",
-                            "#DC6392",
-                            "#E17874",
-                            "#E8974F",
-                            "#EDA445",
-                            "#F0AE42"
+                            "#FFF2D9",
+                            "#FFE5AB",
+                            "#FFD877",
+                            "#FFC94A",
+                            "#FFB71E",
+                            "#F0AE42",
+                            "#E0963E",
+                            "#C07D3A"
                         ]
                     },
                     "legend": {

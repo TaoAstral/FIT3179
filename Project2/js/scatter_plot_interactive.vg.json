@@ -10,38 +10,38 @@
     },
     "transform": [
         {
-            "filter": "datum.freedom_to_make_life_choices > 0"
+            "filter": "datum.gdp_per_capita > 0"
         },
         {
-            "filter": "datum.healthy_life_expectancy > 0"
+            "filter": "datum.social_support > 0"
         }
     ],
     "encoding": {
         "x": {
-            "field": "healthy_life_expectancy",
+            "field": "gdp_per_capita",
             "type": "quantitative",
-            "title": "Healthy Life Expectancy",
+            "title": "Gross Domestic Produc per capita",
             "axis": {
                 "tickCount": 9
             },
             "scale": {
                 "domain": [
                     0,
-                    0.8
+                    2.4
                 ]
             }
         },
         "y": {
-            "field": "freedom_to_make_life_choices",
+            "field": "social_support",
             "type": "quantitative",
-            "title": "Freedom to make life choices",
+            "title": "Social Support",
             "axis": {
                 "tickCount": 9
             },
             "scale": {
                 "domain": [
                     0,
-                    0.8
+                    1.8
                 ]
             }
         }
@@ -67,6 +67,7 @@
                     "type": "nominal",
                     "title": "Region",
                     "legend": {
+                        
                         "orient": "left"
                     },
                     "scale": {
@@ -110,14 +111,14 @@
                         "title": "Country"
                     },
                     {
-                        "field": "healthy_life_expectancy",
+                        "field": "social_support",
                         "type": "quantitative",
-                        "title": "Healthy life expectancy"
+                        "title": "Social Support"
                     },
                     {
-                        "field": "freedom_to_make_life_choices",
+                        "field": "gdp_per_capita",
                         "type": "quantitative",
-                        "title": "Freedom to make life choices"
+                        "title": "Gross Domestic Produc per capita"
                     }
                 ]
             }

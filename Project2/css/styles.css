@@ -2,13 +2,13 @@ body *{
     font-family: 'Open Sans', sans-serif;
   }
   .MainHeading {
-    font-weight: 800;
-    font-family: 'Luckiest Guy', cursive;
-    font-size: 60px;
+    font-weight: 500;
+    font-family: 'Young Serif', serif;
+    font-size: 70px;
     color: rgb(0, 0, 0);
     text-align:center;
     background-color: rgb(255, 182, 193);
-    border-radius: 100px;
+    border-radius: 20px;
     padding-top: 5mm;
     height: 90px;
     word-spacing: 50px;
@@ -31,7 +31,7 @@ body *{
   }
   
   .page {
-    width: 1200px;
+    width: 1100px;
     background-color: rgb(245, 245, 220);
     margin: auto;
     padding: 50px;
@@ -68,10 +68,10 @@ body *{
 }
 
 .GraphHeading{
-  font-family: 'Luckiest Guy', cursive;
+  font-family: 'Young Serif', serif;
   font-weight: 400;
   font-size: 40px;
-  text-decoration:underline;
+  text-decoration:none;
   color: rgb(0, 0, 0);
   text-align: center;
   word-spacing: 15px;

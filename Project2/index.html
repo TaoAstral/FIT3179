@@ -23,9 +23,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Roboto:ital,wght@1,300&display=swap"
-    rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Young+Serif&display=swap" rel="stylesheet">
 
 
 </head>
@@ -33,7 +31,7 @@
 <body>
 
   <div class="page">
-    <div class="MainHeading">Happiness choice</div>
+    <div class="MainHeading">Happiness Choice</div>
     <div class=space></div>
     <div class="MainParagraph">
       Which country has the highest happiness index in the world? What are the most significant
@@ -41,15 +39,21 @@
       or health? This visualization will provide answers to these questions.
     </div>
     <div class=spaceBtwGraph></div>
-    <div class="GraphHeading">This is a header</div>
+    <div class="GraphHeading">Global Happiness Index Map</div>
     <div class = space></div>
     <!-- pure grid group -->
     <div class="pure-g">
       <div class="pure-u-1-3">
-        <div class="MainParagraph">
+        <div class="MainParagraph"  style="text-align: left;">
           <br>
           <br>
-          <p> There is a paragraph There is a paragraph  There is a paragraph  There is a paragraph  There is a paragraph
+          <p> 
+            Deeper colors represent higher happiness scores, 
+            while lighter colors indicate lower happiness scores. 
+            <br>
+            <br>
+            Most countries score above 5. 
+            Countries in the African region tend to have lower scores.
           </p>
         </div>
       </div>
@@ -59,18 +63,26 @@
     </div>
     <!-- end pure grid group -->
     
-    <div class="GraphHeading">This is a header</div>
+    <div class="GraphHeading">Happiness Score Top 10</div>
     <div class="space">
     </div>
 
     <!-- pure grid group -->
     <div class="pure-g">
+
+      <div class="pure-u-2-3">
+        <div id="vis2" class="vis-container" style="margin-left: 30px;"></div>
+      </div>
       <div class="pure-u-1-3">
-        <div class="MainParagraph">
+        <div class="MainParagraph"style="text-align: left;">
           <p>
             <br>
             <br>
-            There is a paragraph There is a paragraph  There is a paragraph  There is a paragraph  There is a paragraph
+            As shown in the chart, Finland is the country with the highest happiness index in the world. 
+            <br>
+            <br>
+            The top ten countries in the ranking all have happiness scores above 7, 
+            and the majority of them are Western European nations.
           </p>
           <p class="notify">
             <br>
@@ -80,17 +92,14 @@
           </p>
         </div>
       </div>
-      <div class="pure-u-2-3">
-        <div id="vis2" class="vis-container" style="margin-left: 30px;"></div>
-      </div>
     </div>
     
-    <div class="GraphHeading">This is a header</div>
+    <div class="GraphHeading">Social and Economic Indicators</div>
     <div class="pure-g">
       <div class="pure-u-1-3" style="margin-left: 25px;">
         <div id="vis3" class="vis-container"></div>
       </div>
-      <div class="pure-u-1-3" style="margin-left: 100px;">
+      <div class="pure-u-1-3" style="margin-left: 65px;">
         <div id="vis4" class="vis-container" ></div>
       </div>
     </div>
