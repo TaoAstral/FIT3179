@@ -87,3 +87,39 @@ body *{
 .space{
   height: 15px;
 }
+
+.orange {
+  font-weight: bold;
+  color: #ff691e;
+  font-size: 22px;
+}
+
+.red {
+  font-weight: bold;
+  color: #F08080;
+  font-size: 22px;
+}
+
+.purple {
+  font-weight: bold;
+  color: #BFA1E2;
+  font-size: 22px;
+}
+
+.yellow {
+  font-weight: bold;
+  color: #FFD700;
+  font-size: 22px;
+}
+
+.blue {
+  font-weight: bold;
+  color: #87CEFA;
+  font-size: 22px;
+}
+
+.green{
+  font-weight: bold;
+  color: #84B3B4;
+  font-size: 22px;
+}

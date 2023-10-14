@@ -6,7 +6,7 @@
     "width":560,
     "height":300,
     "data": {
-      "url": "https://raw.githubusercontent.com/TaoAstral/FIT3179/main/Week10hw/data/WHR_2023.csv"
+      "url": "https://raw.githubusercontent.com/TaoAstral/FIT3179/main/Project2/data/WHR_2023.csv"
     },
     "transform": [
       {"filter": "datum.happiness_score > 7.1"}
@@ -153,7 +153,7 @@
         "transform": [
           {"filter":"datum.country == 'Finland'"},
           {
-            "calculate": "'Finland tops the; happiness index.'",
+            "calculate": "'Finland tops the; happiness index'",
             "as": "text_annotation_raw"
           },
           {

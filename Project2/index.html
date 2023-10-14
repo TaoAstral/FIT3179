@@ -34,27 +34,27 @@
     <div class="MainHeading">Happiness Choice</div>
     <div class=space></div>
     <div class="MainParagraph">
-      Which country has the highest happiness index in the world? What are the most significant
-      factors associated with happiness? Is it linked to economic prosperity, safety,
-      or health? This visualization will provide answers to these questions.
+      Which country has the <span class = orange>highest happiness</span> index in the world? What are the <span class = orange>most significant
+      factors</span> associated with happiness? Is it linked to <span class = orange>economic prosperity, safety,
+      or health</span>? This visualization will provide answers to these questions.
     </div>
 
     <div class=spaceBtwGraph></div>
     <div class="GraphHeading">Global Happiness Index Map</div>
     <div class = space></div>
-    <!-- pure grid group -->
+
     <div class="pure-g">
       <div class="pure-u-1-3">
         <div class="MainParagraph"  style="text-align: left;">
           <br>
           <br>
           <p> 
-            Deeper colors represent higher happiness scores, 
-            while lighter colors indicate lower happiness scores. 
+            <span class = orange>Deeper</span> colors represent <span class = orange>higher</span> happiness scores, 
+            while <span class = orange>lighter</span> colors indicate <span class = orange>lower</span> happiness scores. 
             <br>
             <br>
-            Most countries score above 5. 
-            Countries in the African region tend to have lower scores.
+            Most countries score <span class = orange>above</span> 5. 
+            Countries in the <span class = orange>African region</span> tend to have lower scores.
           </p>
         </div>
       </div>
@@ -62,13 +62,13 @@
         <div id="vis1" class="vis-container" style="margin-left: 20px;"></div>
       </div>
     </div>
-    <!-- end pure grid group -->
+
     
     <div class=spaceBtwGraph></div>
     <div class="GraphHeading">Happiness Score Top 10</div>
     <div class="space">
     </div>
-    <!-- pure grid group -->
+
     <div class="pure-g">
       <div class="pure-u-2-3">
         <div id="vis2" class="vis-container" style="margin-left: 30px;"></div>
@@ -78,11 +78,11 @@
           <p>
             <br>
             <br>
-            As shown in the chart, Finland is the country with the highest happiness index in the world. 
+            As shown in the chart, <span class = orange>Finland</span> is the country with the <span class = orange>highest happiness index</span> in the world. 
             <br>
             <br>
-            The top ten countries in the ranking all have happiness scores above 7, 
-            and the majority of them are Western European nations.
+            The <span class = orange>top ten countries</span> in the ranking all have <span class = orange>happiness</span> scores <span class = orange>above 7</span>, 
+            and the majority of them are <span class = orange>Western European nations</span>.
           </p>
         </div>
       </div>
@@ -97,13 +97,13 @@
             <br>
             <br>
             <br>
-            Israel has a life expectancy score similar to other countries, but ranks lowest among the top ten in 
-            the other three indicators.
+            <span class = blue>Israel</span> has a <span class = blue>healthy life expectancy</span> score similar to other countries, but ranks <span class = blue>lowest</span> among the top ten in 
+            the other <span class = blue>three indicators</span>.
             <br>
             <br>
             <br>
-            Finland has the highest scores for choice freedom and corruption perceptions, while the Netherlands 
-            has the highest score for generosity.
+            <span class = orange>Finland</span> has the highest scores for <span class = orange>choice freedom</span> and <span class = orange>corruption perceptions</span>, while the <span class = purple>Netherlands</span>
+            has the highest score for <span class = purple>generosity</span>.
         </div>
       </div>
       <div class="pure-u-2-3" style="margin-left: 10px;">
@@ -115,8 +115,8 @@
     <div class=space></div>
     <div class="GraphParagrapgh">
       <p class = donut>
-        GDP and social support scores are high in Western Europe, with Western European countries 
-        leading in both indicators. You can click on the legend to view the country distribution in different regions
+        <span class = green>GDP</span> and <span class = green>social support</span> scores are high in <span class = green>Western Europe</span>, with Western European countries 
+        leading in both indicators. You can <span class = green>click on the legend</span> to view the country distribution in <span class = green>different regions</span>.
     </div>
     <div class="pure-g">
       <div class="pure-u-1-3" style="margin-left: 25px;">
@@ -126,7 +126,15 @@
         <div id="vis4" class="vis-container" ></div>
       </div>
     </div>
+
+    <div class="pure-g">
+      <div class="pure-u-1-1 small-font">
+        <p>This visualisation is created by Tao Zhang.<br> The datasource is <a href="#" target=" _blank">https://www.kaggle.com/datasets/sazidthe1/global-happiness-scores-and-factors</href>.</p>
+      </div>
+    </div>
   </div>
+
+
   <!-- end pure grid group -->
 
   </div> <!-- end page -->
@@ -136,7 +144,7 @@
     var specVis2 = "js/lollipop_chart_happiness.vg.json";
     var specVis3 = "js/donutchart.vg.json";
     var specVis4 = "js/scatter_plot_interactive.vg.json";
-    var specVis5 = "js/radar.vg.json";
+    var specVis5 = "js/stacked_bar.vg.json";
 
     vegaEmbed('#vis1', specVis1, { "actions": false }).then(function (result) {
       // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view

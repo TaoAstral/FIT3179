@@ -5,7 +5,7 @@
     "stroke": "beige"
 },
   "height":500,
-  "data": {"url": "https://raw.githubusercontent.com/TaoAstral/FIT3179/main/Week10hw/data/WHR_2023.csv"},
+  "data": {"url": "https://raw.githubusercontent.com/TaoAstral/FIT3179/main/Project2/data/WHR_2023.csv"},
   "params": [
       {
         "name": "Indicator_selection",

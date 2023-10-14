@@ -6,7 +6,7 @@
     "width": 400,
     "height": 400,
     "data": {
-        "url": "https://raw.githubusercontent.com/TaoAstral/FIT3179/main/Week10hw/data/WHR_2023.csv"
+        "url": "https://raw.githubusercontent.com/TaoAstral/FIT3179/main/Project2/data/WHR_2023.csv"
     },
     "transform": [
         {
