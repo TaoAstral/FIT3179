@@ -110,7 +110,7 @@
                     "legend": {
                         "title": "Happiness score",
                         "direction": "horizontal",
-                        "orient": "bottom-left",
+                        "orient": "bottom-right",
                         "gradientLength": 300,
                         "titleFontSize": 15,
                         "titleColor": "black",
