@@ -93,7 +93,7 @@
               "domain": ["Choice Freedom","Corruption Perceptions","Generosity","Healthy Life Expectancy","Corruption Perceptions"],
               "range": [ "#F08080","#BFA1E2","#FFD700","#87CEFA"]
           },
-          "title": "Life Indicator",
+          "title": "Quality indicator",
           "legend":{
             "titleColor":"black",
             "orient": "top",
