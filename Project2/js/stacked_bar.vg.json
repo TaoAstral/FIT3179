@@ -83,8 +83,8 @@
       },
       "encoding": {
           "tooltip":[
-            {"field":"key", "type": "nominal","title":"Quality of Life Indicator:"},
-            {"field":"value", "type": "nominal","title":"Score:", "format":".3f"}
+            {"field":"key", "type": "nominal","title":"Quality of Life Indicator"},
+            {"field":"value", "type": "nominal","title":"Score", "format":".3f"}
           ],
           "color": {
           "field": "key",
